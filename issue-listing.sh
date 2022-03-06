@@ -8,14 +8,16 @@ cd /media/daniell/Windows\ 10\ main/Users/Daniell/Desktop/Orgute/peeper-user-dan
 if [ "$(jq -r '.open' data.json)" = "null" ] || [ "$(jq -r '.open' data.json)" = "" ]; then
    echo "Its your first time using issue-listing.sh!"
    echo "Initializing..."
-   tmp="$(mktemp)"; cat data.json | jq ". += {\"open\":[{}]}" >"$tmp" && mv "$tmp" data.json
-   tmp="$(mktemp)"; cat data.json | jq ". += {\"closed\":[{}]}" >"$tmp" && mv "$tmp" data.json
+   #tmp="$(mktemp)"; cat data.json | jq ". += {\"open\":[{\"total\": "",\"items\": [{}]}]}" >"$tmp" && mv "$tmp" data.json
+   #tmp="$(mktemp)"; cat data.json | jq ". += {\"closed\":[{\"total\": "",\"items\": [{}]}]}" >"$tmp" && mv "$tmp" data.json
+   #tmp="$(mktemp)"; cat data.json | jq ". += {\"open\":[{\"total\": ""}]}" >"$tmp" && mv "$tmp" data.json
+   #tmp="$(mktemp)"; cat data.json | jq ". += {\"closed\":[{\"total\": ""}]}" >"$tmp" && mv "$tmp" data.json
+   #tmp="$(mktemp)"; cat data.json | jq ". += {\"open\":[{\"total\": \"\"}]}" >"$tmp" && mv "$tmp" data.json #- works
+   #tmp="$(mktemp)"; cat data.json | jq ". += {\"closed\":[{\"total\": \"\"}]}" >"$tmp" && mv "$tmp" data.json #- works
+   tmp="$(mktemp)"; cat data.json | jq ". += {\"open\":[{\"total\": \"\",\"items\": [{}]}]}" >"$tmp" && mv "$tmp" data.json
+   tmp="$(mktemp)"; cat data.json | jq ". += {\"closed\":[{\"total\": \"\",\"items\": [{}]}]}" >"$tmp" && mv "$tmp" data.json
 fi
 
-#. ./function_process_issues.sh
-#source
-#. ./$SCRIPTPATH/./function_process_issues.sh
-#. $SCRIPTPATH/./function_process_issues.sh
 . "$SCRIPTPATH/./function_process_issues.sh"
 
 currenttype="open"

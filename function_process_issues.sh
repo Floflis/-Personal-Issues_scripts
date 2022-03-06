@@ -13,13 +13,16 @@ do
   cd ..
   formated="${p%.*}"
   echo "$formated"
-  tmp="$(mktemp)"; cat data.json | jq ".\"$currenttype\"[] += {\"$loopmile\":\"$formated\"}" >"$tmp" && mv "$tmp" data.json
+  tmp="$(mktemp)"; cat data.json | jq ".\"$currenttype\"[].items[] += {\"$loopmile\":\"$formated\"}" >"$tmp" && mv "$tmp" data.json
   #printf '%s\n' "$p"
   loopmile="$(($loopmile + 1))"
   echo "Loop: $loopmile"
   cd "$currenttype"
 done < tmp.txt.tmp
 rm tmp.txt.tmp
+
 cd ..
+contents="$(jq ".\"$currenttype\"[].total = \"$loopmile\"" data.json)" && \
+echo "${contents}" > data.json
 
 }
