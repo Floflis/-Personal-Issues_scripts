@@ -7,4 +7,14 @@ cd /media/daniell/Windows\ 10\ main/Users/Daniell/Desktop/Orgute/peeper-user-dan
 #ls --file-type *.json > test.txt
 #ls --file-type *.json | sort -nk1.8
 #ls --file-type *.json | sort -t_ -nk2
-ls --file-type *.json | sort -n #credits: https://www.unix.com/302856521-post4.html
+#ls --file-type *.json | sort -n #credits: https://www.unix.com/302856521-post4.html
+
+#!/bin/bash -e
+
+tmp="$(ls --file-type *.json | sort -n)"
+#echo "$tmp" > tmp.txt
+#echo $tmp > tmp.txt
+#tmp2="$(cat tmp.txt)"
+tmp2="$(echo $tmp)"
+#rm tmp.txt
+formated="${tmp2%.*}"
