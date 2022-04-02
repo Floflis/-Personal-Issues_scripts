@@ -3,7 +3,7 @@
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 #cd "/media/daniell/Windows\ 10\ main/Users/Daniell/Desktop/Orgute/peeper-user-daniell-mesquita/.issues"
-cd /media/daniell/Windows\ 10\ main/Users/Daniell/Desktop/Orgute/peeper-user-daniell-mesquita/.issues
+cd /1/personal/data/issues
 
 if [ "$(jq -r '.open' data.json)" = "null" ] || [ "$(jq -r '.open' data.json)" = "" ]; then
    echo "Its your first time using issue-listing.sh!"
